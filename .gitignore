@@ -1,7 +1,3 @@
-# Build files Unity WebGL (trop volumineux)
-Tubadventure-Web/Build/
-Tubadventure-Web/StreamingAssets/
-
 # Node/Docker
 node_modules/
 dist/
