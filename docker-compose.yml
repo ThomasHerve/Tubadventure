@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   tubadventure-web:
-    image: thomas-herve/tubadventure:latest
+    image: thomasherve/tubadventure:latest
     container_name: tubadventure-web
     ports:
       - "80:80"
