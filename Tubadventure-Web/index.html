@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
+    <div>
+      <img src="TemplateData/title.png" style="position: absolute; left: 50%; top: 0px; width: 50em; transform: translateX(-50%);"/>
+    </div>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
       <div id="unity-loading-bar">
@@ -54,9 +57,9 @@
       var loaderUrl = buildUrl + "/Tubadventure-Web.loader.js";
       var config = {
         arguments: [],
-        dataUrl: buildUrl + "/Tubadventure-Web.data.br",
-        frameworkUrl: buildUrl + "/Tubadventure-Web.framework.js.br",
-        codeUrl: buildUrl + "/Tubadventure-Web.wasm.br",
+        dataUrl: buildUrl + "/Tubadventure-Web.data.gz",
+        frameworkUrl: buildUrl + "/Tubadventure-Web.framework.js.gz",
+        codeUrl: buildUrl + "/Tubadventure-Web.wasm.gz",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "DefaultCompany",
         productName: "MOA Project",
