@@ -1,10 +1,89 @@
-body { padding: 0; margin: 0 ; background-image: url('background.jpg');background-size:     cover;                      
-    background-position: center top;}
-#unity-container { position: absolute }
-#unity-container.unity-desktop { left: 50%; top: 50%; transform: translate(-50%, -50%) }
-#unity-container.unity-mobile { position: fixed; width: 100%; height: 100% }
-#unity-canvas { background: #231F20 }
-.unity-mobile #unity-canvas { width: 100%; height: 100% }
+body {
+  padding: 0;
+  margin: 0;
+  background-image: url('background.jpg');
+  background-size: cover;
+  background-position: center top;
+  width: 100%;
+  overflow-x: hidden;
+  
+  /* Variables CSS pour le titre */
+  --title-margin-top: 20px;
+  --title-margin-bottom: 30px;
+  --title-max-width: 50em;
+}
+
+/* Sur mobile: fullscreen natif */
+body.unity-mobile {
+  height: 100vh;
+  overflow: hidden;
+  background-image: none;
+}
+
+/* Sur desktop: comportement responsive */
+#unity-container {
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 960px;
+  aspect-ratio: 16 / 9;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+#unity-container.unity-desktop {
+  left: auto;
+  top: auto;
+  transform: none;
+}
+
+/* Sur mobile: comportement natif fullscreen de Unity */
+#unity-container.unity-mobile {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+#unity-canvas {
+  background: #231F20;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  display: block;
+}
+
+.unity-mobile #unity-canvas {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none;
+  aspect-ratio: auto;
+}
+
+@media (max-width: 768px) {
+  #unity-container:not(.unity-mobile) {
+    max-width: 100%;
+  }
+  
+  body {
+    --title-margin-top: 15px;
+    --title-margin-bottom: 20px;
+    --title-max-width: 90vw;
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    --title-margin-top: 10px;
+    --title-margin-bottom: 15px;
+    --title-max-width: 95vw;
+  }
+}
 #unity-loading-bar { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: none }
 #unity-logo { width: 154px; height: 130px; background: url('unity-logo-dark.png') no-repeat center }
 #unity-progress-bar-empty { width: 141px; height: 18px; margin-top: 10px; margin-left: 6.5px; background: url('progress-bar-empty-dark.png') no-repeat center }
@@ -15,5 +94,33 @@ body { padding: 0; margin: 0 ; background-image: url('background.jpg');backgroun
 #unity-build-title { float: right; margin-right: 10px; line-height: 38px; font-family: arial; font-size: 18px }
 #unity-fullscreen-button { cursor:pointer; float: right; width: 38px; height: 38px; background: url('fullscreen-button.png') no-repeat center }
 #unity-warning { position: absolute; left: 50%; top: 5%; transform: translate(-50%); background: white; padding: 10px; display: none }
+
+/* Titre responsive */
+#title-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: var(--title-margin-top);
+  margin-bottom: var(--title-margin-bottom);
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+#title-img {
+  width: 100%;
+  max-width: var(--title-max-width);
+  height: auto;
+  display: block;
+}
+
+/* Sur mobile: masquer le titre quand le lecteur est en fullscreen */
+.unity-mobile #title-container {
+  display: none;
+}
+
+body.unity-mobile #title-container {
+  display: none;
+}
 
 /* Custom */
