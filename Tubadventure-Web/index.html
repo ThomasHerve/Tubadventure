@@ -8,6 +8,20 @@
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
   <body>
+    <div id="memoryPanel" style="
+      position:fixed;
+      top:10px;
+      right:10px;
+      background:rgba(0,0,0,0.8);
+      color:#00ff88;
+      font-family:monospace;
+      padding:10px;
+      z-index:9999;
+      font-size:12px;
+      line-height:1.4;
+      ">
+      Loading memory info...
+      </div>
     <div id="title-container">
       <img src="TemplateData/title.png" id="title-img" alt="Title"/>
     </div>
@@ -130,6 +144,37 @@
             };
 
       document.body.appendChild(script);
+
+      // DEBUG TEMPORAIRE
+      function formatMB(bytes) {
+          return (bytes / 1048576).toFixed(2) + " MB";
+      }
+
+      function updateMemoryInfo() {
+          let output = "";
+
+          // JS Heap (Chrome only)
+          if (performance.memory) {
+              output += "JS Heap Used: " + formatMB(performance.memory.usedJSHeapSize) + "<br>";
+              output += "JS Heap Total: " + formatMB(performance.memory.totalJSHeapSize) + "<br>";
+              output += "JS Heap Limit: " + formatMB(performance.memory.jsHeapSizeLimit) + "<br><br>";
+          } else {
+              output += "JS Heap: Not supported<br><br>";
+          }
+
+          // Device Memory (approx RAM)
+          if (navigator.deviceMemory) {
+              output += "Device RAM (approx): " + navigator.deviceMemory + " GB<br><br>";
+          }
+
+          output += "User Agent:<br>" + navigator.userAgent;
+
+          document.getElementById("memoryPanel").innerHTML = output;
+      }
+
+      // Update every second
+      setInterval(updateMemoryInfo, 1000);
+      updateMemoryInfo();
 
     </script>
   </body>
